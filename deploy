@@ -8,7 +8,7 @@ source ${SOURCE_DIR}/python/deploy
 cat >${APP_DIR}/start_app.bash <<EOF
 #!/bin/bash -le
 
-$(cat ${CURRENT_DIR}/Procfile | grep "web:" | sed -e 's/web: //')
+exec $(cat ${CURRENT_DIR}/Procfile | grep "web:" | sed -e 's/web: //')
 EOF
 
 chmod +x ${APP_DIR}/start_app.bash
