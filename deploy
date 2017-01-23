@@ -1,0 +1,10 @@
+#!/bin/bash -le
+
+SOURCE_DIR=/var/lib/tsuru
+
+source ${SOURCE_DIR}/base/rc/config
+source ${SOURCE_DIR}/python/deploy
+
+cmd=$(cat ${CURRENT_DIR}/Procfile | grep "web:" | sed -e 's/web: //')
+sed -i 's;^web: .*;web: /usr/bin/supervisord;' ${CURRENT_DIR}/Procfile
+sudo sed -i "s#{{APP_COMMAND}}#${cmd}#" /etc/supervisor/conf.d/supervisord.conf

@@ -1,0 +1,9 @@
+#!/bin/bash -le
+
+BASE_DIR=/var/lib/tsuru/python-proxy
+
+apt-get update
+apt-get install -y nginx supervisor
+
+cp $BASE_DIR/etc/nginx.conf /etc/nginx/nginx.conf
+cp $BASE_DIR/etc/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
